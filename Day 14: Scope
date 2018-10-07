@@ -1,0 +1,74 @@
+
+Sample Input
+
+3
+1 2 5
+Sample Output
+
+4
+Explations
+1-2=1
+1-5=4
+2-5=3
+then maxNo is 4 print
+------------------------------------
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+
+class Difference {
+  	private int[] elements;
+  	public int maximumDifference;
+
+	// Add your code here
+    Difference(int[] arra){
+        this.elements=arra;
+    }
+   public void computeDifference(){
+    int a=0,z=1;
+    int comSize=factorial(elements.length)/(factorial(elements.length-2)*2);
+    int[] size=new int[comSize];
+    
+   for(int i=0;i<elements.length-1;i++){
+         for(int j=z;j<elements.length;j++){
+             size[a]=Math.abs(elements[i]-elements[j]);
+             a++;  
+         } 
+      z++;       
+   }//for loop  
+    maximumDifference=size[0];
+   for(int i=0;i<size.length;i++){ 
+           if(size[i]>maximumDifference)
+            maximumDifference=size[i];
+       }//for loop
+ }//method
+  private int factorial(int no){
+        int fac=1;
+       for(int i=no;i>0;i--){
+            fac=i*fac;
+        }//for loop
+      return fac;
+  }//factorial method
+} // End of Difference class
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+        sc.close();
+
+        Difference difference = new Difference(a);
+
+        difference.computeDifference();
+
+        System.out.print(difference.maximumDifference);
+    }
+}
