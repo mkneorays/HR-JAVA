@@ -1,0 +1,49 @@
+Sample Input
+
+2
+Hacker
+Rank
+
+Sample Output
+
+Hce akr
+Rn ak
+-----------------------------------------------------------
+
+import java.util.Scanner;
+import java.util.Arrays;
+public class StringDemo{
+
+   public static void main(String[] args){
+     //System.out.println("sssss");
+     
+     Scanner sc=new Scanner(System.in);
+     int no=sc.nextInt();
+     sc.nextLine();
+     String [] data=new String[no];
+     StringBuffer[] sb=new StringBuffer[no];
+     for(int i=0;i<no;i++){
+         data[i] =sc.nextLine();
+     }
+      for(int i=0;i<data.length;i++){
+        char[] ch=data[i].toCharArray();
+      StringBuffer sb1=new StringBuffer();
+        int l=ch.length;
+         for(int j=0;j<l;j++){
+         if(j%2==0)
+         sb1=sb1.append(ch[j]);
+        }// 1inner for loop
+         sb1=sb1.append(" ");
+        for(int j=0;j<l;j++){
+         if(j%2!=0)
+         sb1=sb1.append(ch[j]);
+        }//2 inner for loop
+        sb[i]=sb1;
+      }//outer for loop
+     
+    for(int i=0;i<sb.length;i++){
+        System.out.println(sb[i]);
+    }//for loop
+   }
+}
+
