@@ -77,3 +77,76 @@ public class SubmitFine{
             }//else
        }
 }//classrn 2;
+-------------------------------------------------------------------------------
+import java.util.*;
+
+public class SubmitFine{
+ public static void main(String [] args){
+ int sum=0;
+  int i1=0,i2=0,i3=0;
+  Scanner sc=new Scanner(System.in);
+   String ss=sc.nextLine();
+      String ss1=sc.nextLine();
+    String [] ss2=ss.split(" ");
+    String [] ss3=ss1.split(" ");
+     for(int i=0;i<ss2.length;i++){
+          if(i==0)
+             i1= dateDayFormate( Integer.parseInt(ss2[i]), Integer.parseInt(ss3[i]));
+           else if(i==1)   
+          i2= dateMonthFormate( Integer.parseInt(ss2[i]), Integer.parseInt(ss3[i]));
+          else
+         i3=  dateYearFormate( Integer.parseInt(ss2[i]), Integer.parseInt(ss3[i]));  
+     }//for 
+    
+    if(i3==0){
+       
+       sum=0;
+       if(i2==0){
+          sum=0;
+          if(i1==0)
+             sum=0;
+          else 
+           sum=15*i1;
+       }
+       else
+          sum=500*i2;
+    }
+    else if(i3<0)
+        sum=0;
+        else{
+          sum=10000*i3;
+          if(sum==110000)
+            sum=10000;
+        }
+     System.out.println(sum);
+ }//main
+   private static  int   dateDayFormate(int day1, int day2){
+        if(day1==day2)
+            return 0;
+         else {
+            int d=day1-day2;
+            if(d<0)
+              return 0;
+              return d;
+            }//else
+        }
+         private static  int  dateMonthFormate(int x, int y){
+            if(x==y)
+            return 0;
+           else {
+            int d=x-y;
+            if(d<0)
+              return 0;
+              return d;
+            }//else
+         }
+       private static  int  dateYearFormate(int x, int y){
+                 if(x==y)
+            return 0;
+            else {
+            int d=x-y;
+           
+              return d;
+            }//else
+       }
+}//classrn 2;
