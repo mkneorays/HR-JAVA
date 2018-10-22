@@ -40,3 +40,4 @@ class Solution{
         in.close();
     }
 }
+//only first test case is working not others
