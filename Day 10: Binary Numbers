@@ -1,0 +1,63 @@
+Sample Input 1
+
+5
+Sample Output 1
+
+1
+Sample Input 2
+
+13
+Sample Output 2
+
+2
+Explanation
+
+Sample Case 1: 
+The binary 5 representation of is 101, so the maximum number of consecutive 1's is 1.
+
+Sample Case 2: 
+The binary representation 13 of 1101 is , so the maximum number of consecutive 1's is 2 .
+
+
+---------------------------------------------------------------------------
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+       int n = scanner.nextInt();
+      // int n=6;
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+         List l=new ArrayList();
+           for(int i=n;n>0;){
+            int x=0,y=0;
+           x=n/2;
+           y=n%2;
+          l.add(y);
+           n=x;
+        }//for loop
+        int x=0,y=0;
+        for(int i=0;i<l.size();i++){
+           if(l.get(i)==0){
+                if(x>y)
+                y=x;
+              x=0;
+           }//if
+              else 
+              x++;
+        }//for loop
+        if(x<y)
+        System.out.println(y);
+        else
+        System.out.println(x);
+        scanner.close();
+    }
+}
