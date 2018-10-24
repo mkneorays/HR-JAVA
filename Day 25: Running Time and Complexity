@@ -1,0 +1,60 @@
+
+Sample Input
+
+3
+12
+5
+7
+Sample Output
+
+Not prime
+Prime
+Prime
+-----------------------------------------------------------------
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+   private static final Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        /* Enter your code here. */
+       int n = scanner.nextInt();
+      scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        int[] arr = new int[n];   ///     [12, 5, 7] 
+         for (int i = 0; i < n; i++) {
+          int nn = scanner.nextInt();
+            arr[i] = nn;
+        }
+     for(int j=0;j<arr.length;j++){
+         int num=arr[j];
+       boolean flag = false;
+       if(num>1){
+        for(int i = 2; i <= num/2; ++i){
+            // condition for nonprime number
+            if(num % i == 0){
+                flag = true;
+                break;
+            }
+        }//inner for loop
+      
+        if(flag==false)
+         System.out.println("Prime");
+         else
+          System.out.println("Not prime");
+       }
+       else
+        System.out.println("Not prime");
+      /*  if (!flag)
+            System.out.println("Prime");
+        else
+            System.out.println("Not prime");
+       */
+     }//outer for loop
+    }
+}
+
+
+
