@@ -1,0 +1,80 @@
+Print two space-separated long integers denoting the respective minimum and maximum values that can be calculated by 
+summing exactly four of the five integers. (The output can be greater than a 32 bit integer.)
+Sample Input
+
+1 2 3 4 5
+Sample Output
+
+10 14
+Explanation
+
+Our initial numbers are , , , , and . We can calculate the following sums using four of the five integers:
+
+If we sum everything except , our sum is .
+If we sum everything except , our sum is .
+If we sum everything except , our sum is .
+If we sum everything except , our sum is .
+If we sum everything except , our sum is .
+
+-----------------------------------------------------------------
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {//1 2 3 4 5
+
+    // Complete the miniMaxSum function below.
+    static void miniMaxSum(int[] arr) {
+      int [] sumArray=new int[arr.length];
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sumArray[i]=sumDigit(arr[i],arr);
+        }
+       for(int i=0;i<sumArray.length;i++) {  //arr.length=5  
+              int temp=0;
+              for(int j=1;j<sumArray.length;j++) {  //  arr.length-a=4
+                 //sorting logic  
+                  if(sumArray[j-1]>sumArray[j]) {    
+                      temp=sumArray[j-1];
+                      sumArray[j-1]=sumArray[j];
+                      sumArray[j]=temp;
+                  }//if
+              }//inner for loop
+          }//outer for loop
+           System.out.println(sumArray[0]+" "+sumArray[sumArray.length-1]);
+           
+
+
+    }
+    static int sumDigit(int ar,int [] arr){
+        //// System.out.println(ar);
+        int sum=0;
+         for(int i=0;i<arr.length;i++){
+             if(ar==arr[i])
+            continue;
+              sum=sum+arr[i];
+        }
+        return sum;
+    }
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int[] arr = new int[5];
+
+        String[] arrItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < 5; i++) {
+            int arrItem = Integer.parseInt(arrItems[i]);
+            arr[i] = arrItem;
+        }
+
+        miniMaxSum(arr);
+
+        scanner.close();
+    }
+}
