@@ -10,11 +10,11 @@ Explanation
 
 Our initial numbers are , , , , and . We can calculate the following sums using four of the five integers:
 
-If we sum everything except , our sum is .
-If we sum everything except , our sum is .
-If we sum everything except , our sum is .
-If we sum everything except , our sum is .
-If we sum everything except , our sum is .
+If we sum everything except 1 , our sum is 2+3+4+5=14.  like that
+If we sum everything except 2 , our sum is .
+If we sum everything except 3 , our sum is .
+If we sum everything except 4 , our sum is .
+If we sum everything except 5 , our sum is .
 
 -----------------------------------------------------------------
 import java.io.*;
@@ -25,18 +25,19 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class Solution {//1 2 3 4 5
-
-    // Complete the miniMaxSum function below.
+public class Solution {
+      static  int iii=0;
+   // Complete the miniMaxSum function below.
     static void miniMaxSum(double[] arr) {
       double [] sumArray=new double[arr.length];
-        double sum=0;
+        double sum=0;  
         for(int i=0;i<arr.length;i++){
             sumArray[i]=sumDigit(arr[i],arr);
-        }
-       for(int i=0;i<sumArray.length;i++) {  //arr.length=5  
+            iii++;
+        }//inner for loop
+       for(int i=0;i<sumArray.length;i++) {  
               double temp=0;
-              for(int j=1;j<sumArray.length;j++) {  //  arr.length-a=4
+              for(int j=1;j<sumArray.length;j++) {
                  //sorting logic  
                   if(sumArray[j-1]>sumArray[j]) {    
                       temp=sumArray[j-1];
@@ -46,15 +47,11 @@ public class Solution {//1 2 3 4 5
               }//inner for loop
           }//outer for loop
            System.out.println((long)sumArray[0]+" "+(long)sumArray[sumArray.length-1]);
-           
-
-
-    }
+    }//miniMaxSum method
     static double sumDigit(double ar,double [] arr){
-         System.out.println(ar);
-        double sum=0;
+           double sum=0;
          for(int i=0;i<arr.length;i++){
-             if(ar==arr[i])
+              if(iii==i)
             continue;
               sum=sum+arr[i];
         }
@@ -63,18 +60,14 @@ public class Solution {//1 2 3 4 5
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-       // double[] arr = new double[5];
-         double[] arr ={5,5,5,5,5};
-      /*  String[] arrItems = scanner.nextLine().split(" ");
+        double[] arr = new double[5];
+        String[] arrItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
         for (int i = 0; i < 5; i++) {
             double arrItem = Double.parseDouble(arrItems[i]);
             arr[i] = arrItem;
-        }*/
-
+        }
         miniMaxSum(arr);
-
         scanner.close();
     }
 }
