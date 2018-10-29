@@ -1,0 +1,56 @@
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    /*
+     * Complete the timeConversion function below.
+     */   //     [0, 7, :, 0, 5, :, 4, 5, P, M]
+    static String timeConversion(String s) {  //   12:40:22AM   00:40:22
+       char [] time=s.toCharArray();          //   12:05:39AM   00:05:39
+       String ss=null;                         //  12:45:54PM   12:45:54
+       StringBuffer sb=new StringBuffer();      // 12:00:00AM   00:00:00
+        StringBuffer sb1=new StringBuffer();
+       for(int i=time.length-1;i>=time.length-2;i--){
+          ss=String.valueOf(time[i]);
+       }//for lopop
+       if(ss.equals("P")){
+            for(int i=0;i<time.length-8;i++){
+             sb1.append(String.valueOf(time[i]));
+           }//for lopop
+         String str = sb1.toString();
+         int iii=12+Integer.parseInt(str);
+      char [] chars = String.valueOf(iii).toCharArray();
+            for(int i=0;i<chars.length;i++){
+             sb.append(String.valueOf(chars[i]));
+           }//for lopop
+           for(int i=2;i<time.length-2;i++){
+             sb.append(String.valueOf(time[i]));
+           }//for lopop      
+       }//if
+       else{
+        for(int i=0;i<8;i++){
+           sb.append(String.valueOf(time[i]));
+          }//for lopop
+       }//else
+       return sb.toString();
+    }//timeConversion method
+
+    private static final Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scan.nextLine();
+ 
+        String result = timeConversion(s);
+
+        bw.write(result);
+        bw.newLine();
+
+        bw.close();
+    }
+}
