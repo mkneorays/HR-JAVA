@@ -1,3 +1,15 @@
+
+           12:40:22AM   00:40:22
+            //   12:05:39AM   00:05:3
+            //  12:45:54PM   12:45:54
+             // 12:00:00AM   00:00:00
+Sample Input 0
+
+07:05:45PM
+Sample Output 0
+
+19:05:45
+-------------------------------------------------------
 import java.io.*;
 import java.math.*;
 import java.text.*;
@@ -14,15 +26,21 @@ public class Solution {
        String ss=null;                         //  12:45:54PM   12:45:54
        StringBuffer sb=new StringBuffer();      // 12:00:00AM   00:00:00
         StringBuffer sb1=new StringBuffer();
+        StringBuffer sb2=new StringBuffer();
        for(int i=time.length-1;i>=time.length-2;i--){
           ss=String.valueOf(time[i]);
        }//for lopop
        if(ss.equals("P")){
+            int iii=0;
+           //two data will take
             for(int i=0;i<time.length-8;i++){
              sb1.append(String.valueOf(time[i]));
            }//for lopop
          String str = sb1.toString();
-         int iii=12+Integer.parseInt(str);
+         if(str.equals("12"))
+         iii=Integer.parseInt(str);
+         else
+           iii=12+Integer.parseInt(str);
       char [] chars = String.valueOf(iii).toCharArray();
             for(int i=0;i<chars.length;i++){
              sb.append(String.valueOf(chars[i]));
@@ -32,9 +50,20 @@ public class Solution {
            }//for lopop      
        }//if
        else{
+            for(int i=0;i<time.length-8;i++){
+             sb2.append(String.valueOf(time[i]));
+           }//for lopop
+           if("12".equals(sb2.toString())){
+               sb=new StringBuffer("00");
+              for(int i=2;i<time.length-2;i++){
+             sb.append(String.valueOf(time[i]));
+           }//for lopop
+           }
+           else{
         for(int i=0;i<8;i++){
            sb.append(String.valueOf(time[i]));
           }//for lopop
+      }
        }//else
        return sb.toString();
     }//timeConversion method
@@ -46,6 +75,7 @@ public class Solution {
 
         String s = scan.nextLine();
  
+       //String s="12:45:54PM";
         String result = timeConversion(s);
 
         bw.write(result);
