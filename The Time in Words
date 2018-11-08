@@ -1,0 +1,94 @@
+Sample Input 0
+
+5
+47
+Sample Output 0
+
+thirteen minutes to six
+Sample Input 1
+
+3
+00
+Sample Output 1
+
+three o' clock
+Sample Input 2
+
+7
+15
+Sample Output 2
+
+quarter past seven
+------------------------------------------------------------
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the timeInWords function below.
+   
+static String timeInWords(int h, int m) {
+
+    // 3       00          three o' clock
+    //3          01       one minute past five
+//      3         31       twenty nine minutes to four
+      String time="";  
+   String oneMinute="minute",minutes="minutes";                     
+     String[] days={"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fouteen","quarter","sixteen","seventeen","eighteen","nineteen","twenty","twenty one","twenty two","twenty three","twenty four","twenty five","twenty six","twenty seven","twenty eight","twenty nine","half"};
+        if(m==0){
+         time=days[h-1];
+         time=time.concat(" o' clock");
+        }//outer if
+else{
+
+     if(m<=30){
+            if(m==1 || m==15 || m==30){
+              if(m==1) {time=days[m-1]+" "+"minute";}
+             else if(m==15) {time=days[m-1];}  //quarter
+              else {time=days[m-1];}            //half
+           }//if
+            else{
+                time=days[m-1]+" "+"minutes";
+                }
+            time=time.concat(" past "+days[h-1]);
+       }
+     else{    //  m>=30
+              if(m==45) {time=days[(60-m)-1];}  //quarter
+              else {//   3         31       twenty nine minutes to four
+                  int i=60-m;
+                  time=days[(60-m)-1]  +" "+"minutes";
+                  }
+              time=time.concat(" to "+days[h]);  
+       }
+     
+    }//outer else 
+      return time;
+   }//static method
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int h = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        int m = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        String result = timeInWords(h, m);
+        // String result = timeInWords(5,45);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
