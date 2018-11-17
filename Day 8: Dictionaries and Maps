@@ -1,3 +1,18 @@
+Sample Input
+
+3
+sam 99912222
+tom 11122222
+harry 12299933
+sam
+edward
+harry
+Sample Output
+
+sam=99912222
+Not found
+harry=12299933
+-----------------------------------------------------------------
 //Complete this code or write your own from scratch
 import java.util.*;
 import java.io.*;
@@ -7,7 +22,7 @@ import java.io.*;
 class Solution{
     public static void main(String []argh){
         Scanner in = new Scanner(System.in);
-        Map map=new LinkedHashMap();
+        Map map=new HashMap();
 
         double n = in.nextInt();
         for(double i = 0; i < n; i++){
@@ -16,28 +31,31 @@ class Solution{
             // Write code here
             map.put(name,phone);
         }
-          ArrayList ss=new ArrayList();
-        for(int i=0;i<n;i++){
+        //System.out.println(map);
+          ArrayList al=new ArrayList();
+        for(double i=0;i<n;i++){
          String name = in.next();
-         ss.add(name);
-        }
+         al.add(name);
+        }//for
+        //System.out.println(al);
         Set set=map.keySet();
-         Iterator it=set.iterator();
-         while(it.hasNext()){
-        boolean flag=false;
-           String d=(String)it.next();
-             for(int i=0;i<ss.size();i++){
-                 //int iii=(int)i;
-                if(d.equals(ss.get(i))){
-                System.out.println(ss.get(i)+"="+map.get(d));
-                flag=true;
-                break;
-                }
-             }//for
-             if(flag==false)
-            System.out.println("Not found");
-         }//while   
+        for(int i=0;i<al.size();i++){
+            int no=0;
+            String nam=(String)al.get(i);
+            for(Object oo:set){
+                String nam1=(String)oo;
+                if(nam.equals(nam1)){
+                    no++;
+                 System.out.println(nam+"="+map.get(nam1));
+                  break;
+                }//if
+            }//inner for
+            if(no==0)
+                System.out.println("Not found");
+        }//outer  for
         in.close();
-    }
-}
-//only first test case is working not others
+    }//main
+}//class
+
+
+//only two  test case is working left  three test cases
